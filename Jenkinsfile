@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        node {
-            label 'Ansible-Master'
-        }
+            label 'Ansible-Master'  
     }
     stages {
         stage('Execution of Playbook') {
