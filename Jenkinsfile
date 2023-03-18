@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('dev') {
             when {
+                branch 'dev'
                 expression {
                     params.ENVIRONMENT == 'dev'
                 }
@@ -20,6 +21,7 @@ pipeline {
         }
         stage('qa') {
             when {
+                branch 'qa'
                 expression {
                     params.ENVIRONMENT == 'qa'
                 }
