@@ -6,11 +6,11 @@ pipeline {
         {
             when { 
                     expression { params.environment == 'dev' }
-               steps {
+            steps {
                 echo 'Hello World'
             }
                 } 
-             when { 
+            when { 
                     expression { params.environment == 'qa' }
             steps {
                 echo 'Welocme to India'
