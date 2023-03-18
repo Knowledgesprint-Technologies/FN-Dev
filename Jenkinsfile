@@ -1,23 +1,21 @@
 pipeline {
-    agent {
-            label 'Ansible-Master'  
-   }
+    agent any
     parameters { choice(name: 'environment', choices: ['dev', 'qa'], description: 'choose environment to deploy') }
     stages {
-        stage('Execution of Playbook') {
+        stage('Execution of playbook')
+        {
+            when { 
+                    expression { params.environment == 'dev' }
+               steps {
+                echo 'Hello World'
+            }
+                } 
+             when { 
+                    expression { params.environment == 'qa' }
             steps {
-                dir('/home/ansibleadm/FN-Dev') {
-                    sh 'ansible-playbook test.yml'
-                }
+                echo 'Welocme to India'
             }
         }
-        stage('Execution of Playbook') {
-            when { environment name: 'environment', value: 'qa' }
-            steps {
-                dir('/home/ansibleadm/FN-Dev') {
-                    sh 'echo "hello world"'
-                }
-            }
-        }
-    } 
+    }
+}
 }
