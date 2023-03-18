@@ -1,21 +1,32 @@
 pipeline {
-    agent any
-    parameters { choice(name: 'environment', choices: ['dev', 'qa'], description: 'choose environment to deploy') }
-    stages {
-        stage('Execution of playbook')
-        {
-            when { 
-                    expression { params.environment == 'dev' }
-            }
-            steps {
-                echo 'Hello World'
-                 }  
-            when { 
-                    expression { params.environment == 'qa' }
-            }
-            steps {
-                echo 'Welocme to India'
-            }
+    agent any 
+    parameters {
+        choice (
+            name : 'ENVIRONMENT',
+            choices: ['dev', 'qa'],
+            description: 'select environemt to deploy'
+        )
     }
-}
+    stages {
+        stage('dev') {
+            when {
+                expression {
+                    params.ENVIRONMENT == 'dev'
+                }
+            }
+            steps {
+                sh "echo you r in dev"
+            }
+        }
+        stage('qa') {
+            when {
+                expression {
+                    params.ENVIRONMENT == 'qa'
+                }
+            }
+            steps {
+                sh "echo you r in qa"
+            }
+        }
+    }
 }
