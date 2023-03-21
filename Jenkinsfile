@@ -11,6 +11,7 @@ pipeline {
         stage('branch name') {
             steps {
                 sh "echo $BRANCH_NAME"
+                sh "echo $USER"
             }
         }
         stage('dev') {
