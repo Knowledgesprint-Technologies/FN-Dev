@@ -2,7 +2,7 @@
   - name: Git pull, Convert to HTML, Deploy on Tomcat
     hosts: localhost
     vars:
-       - dest: "/home/ansibleadm/"
+       - dest: "/home/ansibleadm/FN-Dev/"
     #    - word_docx_loc: "/home/ansibleadm/"
     tasks:
       - name: git pull
