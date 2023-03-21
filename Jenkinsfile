@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             steps {
-                sh "echo you r in dev"
+                sh "echo you are in dev"
             }
         }
         stage('qa') {
