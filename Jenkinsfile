@@ -1,13 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        label 'Ansible-Master'
+    }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
     }
     stages {
         stage('SCM Checkout') {
             steps {
-                dir('/home/ansibleadm/')
-                git 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
+                dir('/home/ansibleadm/') {
+                    git 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
+                }
             }
         }
         stage('Deploy to Dev Env') {
