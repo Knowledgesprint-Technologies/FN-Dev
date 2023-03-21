@@ -2,7 +2,7 @@
   - name: Git pull, Convert to HTML, Deploy on Tomcat
     hosts: localhost
     vars:
-       - dest: "/home/ansibleadm/jenkins/workspace/FN-DEV-Ansible"
+       - dest: "/home/ansibleadm/"
     #    - word_docx_loc: "/home/ansibleadm/"
     tasks:
       - name: git pull
@@ -11,8 +11,8 @@
           dest: "{{ dest }}"
       
       - name: convert to html
-        shell: bash /home/ansibleadm/jenkins/workspace/FN-DEV-Ansible/env-configs/dev/scripts/for-html.sh
+        shell: bash /home/ansibleadm/FN-Dev/env-configs/dev/scripts/for-html.sh
 
       - name: deploy to tomcat using rsync (push)
         command:
-          rsync -avh --delete /home/ansibleadm/jenkins/workspace/FN-DEV-Ansible/html-gen-files/ tomcat@13.233.129.77:/opt/tomcat9/webapps/fn-dev/
+          rsync -avh --delete /home/ansibleadm/FN-Dev/html-gen-files/ tomcat@13.233.129.77:/opt/tomcat9/webapps/fn-dev/
