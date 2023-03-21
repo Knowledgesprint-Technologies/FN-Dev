@@ -12,8 +12,7 @@ pipeline {
             when {
                 branch 'dev'
                 expression {
-                    params.ENVIRONMENT == 'dev'
-                    return env.BRANCH_NAME == 'origin/dev'
+                    return env.BRANCH_NAME == 'dev'
                 }
             }
             steps {
@@ -24,8 +23,7 @@ pipeline {
             when {
                 branch 'qa'
                 expression {
-                    params.ENVIRONMENT == 'qa'
-                    return env.BRANCH_NAME == 'origin/qa'
+                    return env.BRANCH_NAME == 'qa'
                 }
             }
             steps {
