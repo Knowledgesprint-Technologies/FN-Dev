@@ -6,13 +6,6 @@ pipeline {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
     }
     stages {
-        stage('SCM Checkout') {
-            steps {
-                dir('/home/ansibleadm/') {
-                    sh "git clone https://github.com/Knowledgesprint-Technologies/FN-Dev.git"
-                }
-            }
-        }
         stage('Deploy to Dev Env') {
             when {
                 expression {
@@ -22,7 +15,7 @@ pipeline {
                 }
             }
             steps {
-                dir('/home/ansibleadm/FN-Dev') {
+                dir('/home/ansibleadm/jenkins/workspace/FN-DEV-Ansible') {
                     sh 'ansible-playbook env-configs/dev/playbooks/ansible-dev-deploy.yml'
                 }
             }
