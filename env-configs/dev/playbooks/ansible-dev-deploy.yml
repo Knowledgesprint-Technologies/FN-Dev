@@ -8,6 +8,7 @@
       - name: git pull
         git:
           repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
+          force: yes
           dest: "{{ dest }}"
       
       - name: convert to html
