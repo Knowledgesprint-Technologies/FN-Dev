@@ -15,14 +15,10 @@ pipeline {
         }
         stage('Deploy to Dev Env') {
             when {
-                anyof {
-                    expression {
-                        params.BRANCH != 'master'
-                        params.BRANCH != 'qa'
-                    }
-                    not {
-                        changeset "refs/remotes/origin/${params.BRANCH}"
-                    }
+                expression {
+                    params.BRANCH == 'dev'
+                    changeset "refs/remotes/origin/${params.BRANCH}"
+                    
                 }
             }
             steps {
@@ -33,14 +29,10 @@ pipeline {
         }    
         stage('Deploy to QA Env') {
             when {
-                anyof {
-                    expression {
-                        params.BRANCH != 'master'
-                        params.BRANCH != 'dev'
-                    }
-                    not {
-                        changeset "refs/remotes/origin/${params.BRANCH}"
-                    }
+                expression {
+                    params.BRANCH == 'qa'
+                    changeset "refs/remotes/origin/${params.BRANCH}"
+                    
                 }
             }
             steps {
