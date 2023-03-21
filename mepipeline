@@ -15,8 +15,10 @@ pipeline {
         }
         stage('Deploy to Dev Env') {
             when {
-                params.BRANCH == 'dev'
-                changeset "refs/remotes/origin/${params.BRANCH}"
+                anyOf {
+                    params.BRANCH == 'dev'
+                    changeset "refs/remotes/origin/${params.BRANCH}"
+                }
             }
             steps {
                 dir('/home/ansibleadm/FN-Dev') {
@@ -28,7 +30,7 @@ pipeline {
             when {
                 anyOf {
                     expression {
-                        params.BRANCH != 'master'
+                        params.BRANCH == 'qa'
                     }
                     not {
                         changeset "refs/remotes/origin/${params.BRANCH}"
