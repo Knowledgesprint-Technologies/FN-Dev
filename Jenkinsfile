@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('branch name') {
             steps {
-                sh "echo "$(BRANCH_NAME)""
+                sh "echo $BRANCH_NAME"
             }
         }
         stage('dev') {
