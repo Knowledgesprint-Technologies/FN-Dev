@@ -3,6 +3,8 @@
 input_dir="/home/ansibleadm/FN-Dev"
 output_dir="/home/ansibleadm/FN-Dev/html-gen-files"
 
+mkdir -p /home/ansibleadm/FN-Dev/html-gen-files
+
 for files in "$input_dir"/*.docx
 do
         # echo $files
