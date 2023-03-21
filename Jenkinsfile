@@ -8,6 +8,11 @@ pipeline {
         )
     }
     stages {
+        stage('branch name') {
+            steps {
+                sh "echo $(BRANCH_NAME)"
+            }
+        }
         stage('dev') {
             when {
                 branch 'dev'
