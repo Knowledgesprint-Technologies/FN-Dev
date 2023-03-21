@@ -9,7 +9,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 dir('/home/ansibleadm/') {
-                    git 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
+                    sh "git clone https://github.com/Knowledgesprint-Technologies/FN-Dev.git"
                 }
             }
         }
