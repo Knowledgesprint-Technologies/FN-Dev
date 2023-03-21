@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
+    }
+    stages {
+        stage('dev') {
+            when {
+                changeset "refs/remote/origin/${params.BRANCH}"
+            }
+            steps {
+                sh "echo you r in dev"
+            }
+        }    
+        stage('qa') {
+            when {
+                anyof {
+                    expression {
+                        params.BRANCH != 'master'
+                    }
+                    not {
+                        changeset "refs/remotes/origin/${params.BRANCH}"
+                    }
+                }
+            }
+            steps {
+                sh "echo you r in qa"
+            }
+        }
+    }
+}
