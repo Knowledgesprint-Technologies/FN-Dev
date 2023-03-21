@@ -14,7 +14,7 @@ pipeline {
         }    
         stage('qa') {
             when {
-                anyof {
+                anyOf {
                     expression {
                         params.BRANCH != 'master'
                     }
