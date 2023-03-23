@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'Ansible-Master'
-    }
+    agent any
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
     }
