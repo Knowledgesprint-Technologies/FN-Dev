@@ -8,11 +8,7 @@ pipeline {
     stages {
         stage('Deploy to Dev Env') {
             when {
-                expression {
-                    params.BRANCH == 'dev'
-                    changeset "refs/remotes/origin/${params.BRANCH}"
-                    
-                }
+                expression {params.BRANCH == 'dev'}
             }
             steps {
                 dir('/home/ansibleadm/jenkins/workspace/FN-DEV-Ansible') {
@@ -22,11 +18,7 @@ pipeline {
         }    
         stage('Deploy to QA Env') {
             when {
-                expression {
-                    params.BRANCH == 'qa'
-                    changeset "refs/remotes/origin/${params.BRANCH}"
-                    
-                }
+                expression {params.BRANCH == 'qa'}
             }
             steps {
                 sh "echo you r in qa"
