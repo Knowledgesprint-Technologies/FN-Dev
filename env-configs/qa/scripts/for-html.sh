@@ -1,9 +1,9 @@
 #!/bin/bash
 
-input_dir="/home/ansibleadm/FN-QA"
-output_dir="/home/ansibleadm/FN-QA/html-gen-files"
+input_dir="/home/ansibleadm/FN-Dev"
+output_dir="/home/ansibleadm/FN-Dev/tmp"
 
-mkdir -p /home/ansibleadm/FN-QA/html-gen-files
+mkdir -p /home/ansibleadm/FN-Dev/tmp
 
 for files in "$input_dir"/*.docx
 do
