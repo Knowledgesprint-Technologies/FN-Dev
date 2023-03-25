@@ -9,4 +9,4 @@
       repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
       dest: "{{ dest }}"
    - name: Convert to html files
-     shell: bash /home/ansibleadm/FN-QA/env-configs/scripts/for-html.sh
+     shell: bash /home/ansibleadm/FN-Dev/env-configs/qa/scripts/for-html.sh
