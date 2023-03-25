@@ -1,0 +1,12 @@
+---
+- name: Pull docs from github, convert to html files
+  hosts: localhost
+  vars:
+  -  dest: "/home/ansibleadm/FN-QA"
+  tasks:
+   - name: Pull from github
+     git:
+      repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
+      dest: "{{ dest }}"
+   - name: Convert to html files
+     shell: bash /home/ansibleadm/FN-QA/env-configs/scripts/for-html.sh
