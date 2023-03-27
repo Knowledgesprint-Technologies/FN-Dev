@@ -18,7 +18,7 @@
      shell: bash /home/ansibleadm/FN-Dev/env-configs/qa/scripts/for-html.sh
    - name: deploy to docker using rsync (push)
      command:
-          rsync -avh --delete /home/ansibleadm/FN-Dev/html-gen-files/ dockeradm@docker-vm:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files
+         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp dockeradm@43.205.195.242:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files
 - name: Build an image and push it to a private repo
   hosts: docker-vm
   tasks:
