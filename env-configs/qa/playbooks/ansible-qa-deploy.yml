@@ -4,6 +4,10 @@
   vars:
   -  dest: "/home/ansibleadm/FN-Dev/tmp"
   tasks:
+   - name: Recursively remove directory
+     file:
+      path: "{{ dest }}"
+      state: absent
    - name: Pull from github
      git:
       repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
