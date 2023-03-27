@@ -8,18 +8,18 @@
      file:
       path: "{{ dest }}"
       state: absent
+
    - name: Pull from github
      git:
       repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
       dest: "{{ dest }}"
       version: qa
       force: yes
+
    - name: Convert to html files
      shell: bash /home/ansibleadm/FN-Dev/env-configs/qa/scripts/for-html.sh
-   - name: deploy to docker using rsync (push)
-     command:
-         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp dockeradm@43.205.195.242:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files
-- name: Build an image and push it to a private repo
+
+- name: Git Checkout - QA Branch
   hosts: docker-vm
   tasks:
    - name: Pull from github
@@ -28,6 +28,7 @@
       dest: /home/dockeradm/FN-Dev
       version: qa
       force: yes
+
   #  - name: Build image and push it to pvt repo
   #    docker_image:
   #     build:
@@ -35,6 +36,17 @@
   #     name: projectfndev/fn-qa-docker-images
   #     push: yes
   #     source: build
+  
+- name: Copy html files to docker-vm
+  hosts: localhost
+  tasks:
+    - name: deploy to docker using rsync (push)
+      command:
+         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp dockeradm@43.205.195.242:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files
+
+- name: Build an image and push it to a private repo
+  hosts: docker-vm
+  tasks:
    - name: Build Image and push it to pvt repo
      shell:
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
