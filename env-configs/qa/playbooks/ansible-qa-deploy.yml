@@ -2,7 +2,7 @@
 - name: Pull docs from github, convert to html files
   hosts: localhost
   vars:
-  -  dest: "/home/ansibleadm/FN-Dev/tmp"
+  -  dest: "/home/ansibleadm/FN-Dev/"
   tasks:
    - name: Recursively remove directory
      file:
@@ -46,7 +46,7 @@
   tasks:
     - name: deploy to docker using rsync (push)
       command:
-         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp dockeradm@43.205.195.242:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files
+         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp/* dockeradm@43.205.195.242:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files/
 
 - name: Build an image and push it to a private repo
   hosts: docker-vm
