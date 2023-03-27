@@ -22,6 +22,10 @@
 - name: Git Checkout - QA Branch
   hosts: docker-vm
   tasks:
+   - name: Recursively remove directory
+     file:
+      path: /home/dockeradm/FN-Dev/
+      state: absent
    - name: Pull from github
      git:
       repo: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
