@@ -5,7 +5,19 @@ services:
     container_name: apache_
     deploy:
       replicas: 2
-      
+      resources:
+            limits:
+              cpus: 0.50
+              memory: 50M
+            reservations:
+              cpus: 0.25
+              memory: 25M
+      healthcheck:
+        test: curl --fail http://localhost:80 || exit 1
+        interval: 60s
+        retries: 5
+        start_period: 20s
+        timeout: 10s
     ports:
       - "80:80"
 
