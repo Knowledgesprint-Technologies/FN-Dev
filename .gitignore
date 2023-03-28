@@ -1,2 +1,5 @@
 *.tmp
 *.pdf
+*.html
+/media/*
+/tmp
