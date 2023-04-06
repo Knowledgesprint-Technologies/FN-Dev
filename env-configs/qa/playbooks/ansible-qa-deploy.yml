@@ -54,7 +54,7 @@
    - name: Build Image and push it to pvt repo
      shell:
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-       cmd: "sh tag.sh"
+       cmd: "sh tag2.sh"
 
    #- name: Push the image to Dockerhub. 
      #shell:
