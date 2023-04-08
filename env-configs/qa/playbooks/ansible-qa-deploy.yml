@@ -60,11 +60,10 @@
      #shell:
        #cmd: "docker push projectfndev/fn-qa-docker-images"
 
-- name: Deploy Docker Stack with 3 replicas
-  hosts: docker-vm
-  tasks:
-   - name: Deploy the docker stack.
-     shell:
-       chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-       cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
-     
+          #- name: Deploy Docker Stack with 3 replicas
+           # hosts: docker-vm
+            #tasks:
+             #- name: Deploy the docker stack.
+              # shell:
+               #  chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
+                # cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
