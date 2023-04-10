@@ -52,9 +52,9 @@
   hosts: docker-vm
   tasks:
    - name: Build Image and push it to pvt repo
-     shell:
+     command: source tag2.sh
+     args:
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-       cmd: "source tag2.sh"
 
    - name: Push the image to Dockerhub. 
      shell:
