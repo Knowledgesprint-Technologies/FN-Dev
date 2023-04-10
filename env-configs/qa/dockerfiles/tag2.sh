@@ -4,10 +4,10 @@ Repository="projectfndev"
 if [ -f /tmp/tagging.txt ]; then
 	lasttag=$(cat /tmp/tagging.txt)
 	newtag=$(echo "$lasttag + 0.1" | bc)
-	export newtag
 else
 	newtag=1.1
 fi
+export newtag
 docker build -t $Repository/$Imagename:$newtag . 
 #docker push $Repository/$Imagename:$newtag
 docker images | awk '( $1 == "projectfndev/fn-qa-docker-images")' | awk '{print $2}'| sort -n > /tmp/tagging.txt
