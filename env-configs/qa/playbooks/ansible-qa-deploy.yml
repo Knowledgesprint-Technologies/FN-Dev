@@ -54,16 +54,15 @@
    - name: Build Image and push it to pvt repo
      shell:
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-       cmd: "sh tag2.sh"
+       cmd: "source tag2.sh"
 
-   #- name: Push the image to Dockerhub. 
-     #shell:
-       #cmd: "docker push projectfndev/fn-qa-docker-images"
-
-          #- name: Deploy Docker Stack with 3 replicas
-           # hosts: docker-vm
-            #tasks:
-             #- name: Deploy the docker stack.
-              # shell:
-               #  chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-                # cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
+   - name: Push the image to Dockerhub. 
+     shell:
+       cmd: "docker push projectfndev/fn-qa-docker-images:$newtag"
+- name: Deploy Docker Stack with 3 replicas
+  hosts: docker-vm
+  tasks:
+   - name: Deploy the docker stack.
+     shell:
+       chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
+       cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
