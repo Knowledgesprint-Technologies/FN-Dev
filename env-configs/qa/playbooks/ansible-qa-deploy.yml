@@ -46,9 +46,9 @@
   tasks:
     - name: deploy to docker using rsync (push)
       command:
-         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp/ dockeradm@13.233.252.217:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files/
+         rsync -avh --delete /home/ansibleadm/FN-Dev/tmp/ dockeradm@43.205.240.25:~/FN-Dev/env-configs/qa/dockerfiles/html-gen-files/
 
-- name: Build an image and push it to a private repo
+- name: Build an image, push it to a private repo and create container
   hosts: docker-vm
   tasks:
    - name: Build Image and push it to pvt repo
