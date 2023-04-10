@@ -5,5 +5,6 @@ WORKDIR /var/www/localhost/htdocs
 ADD html-gen-files .
 ADD update_index.sh .
 RUN chmod +x update_index.sh
+RUN sh update_index.sh
 EXPOSE 80
 ENTRYPOINT ["httpd", "-D", "FOREGROUND"]
