@@ -59,7 +59,7 @@
   
    - name: Push the image to Dockerhub. 
      shell:
-       cmd: "docker push projectfndev/fn-qa-docker-images:$newtag"
+       cmd: "docker push projectfndev/fn-qa-docker-images:${newtag}"
 - name: Deploy Docker Stack with 3 replicas
   hosts: docker-vm
   tasks:
