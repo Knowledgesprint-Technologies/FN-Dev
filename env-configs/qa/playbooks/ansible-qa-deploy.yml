@@ -55,7 +55,7 @@
      shell: 
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
        executable: /bin/bash
-       cmd: source tag2.sh
+       cmd: "source tag2.sh"
   
    - name: Push the image to Dockerhub. 
      shell:
