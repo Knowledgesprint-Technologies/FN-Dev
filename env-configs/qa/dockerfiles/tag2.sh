@@ -4,8 +4,10 @@ Repository="projectfndev"
 if [ -f /tmp/tagging.txt ]; then
 	lasttag=$(cat /tmp/tagging.txt)
 	newtag=$(echo "$lasttag + 0.1" | bc)
+        export newtag
 else
 	newtag=1.1
+	export newtag
 fi
 export newtag
 docker build -t $Repository/$Imagename:$newtag . 
