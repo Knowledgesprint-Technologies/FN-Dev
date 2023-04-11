@@ -58,6 +58,7 @@
        cmd: "source tag2.sh"
        
    - name: Fetch latest image tag
+     chdir: /home/dockeradm
      command: echo $newtag > sample.txt
 #      register: image_tag
      
