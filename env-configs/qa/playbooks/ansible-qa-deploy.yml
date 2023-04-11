@@ -55,17 +55,17 @@
      shell: 
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
        executable: /bin/bash
-       cmd: "source tag2.sh"
+       cmd: "source tag2.sh && docker push projectfndev/fn-qa-docker-images:$newtag"
        
-   - name: Fetch latest image tag
-     shell:
-       chdir: /home/dockeradm
-       executable: /bin/bash
-       cmd: echo $newtag > sample.txt
+#    - name: Fetch latest image tag
+#      shell:
+#        chdir: /home/dockeradm
+#        executable: /bin/bash
+#        cmd: echo $newtag > sample.txt
 #      register: image_tag
      
-   - name: Push the image to Dockerhub. 
-     command: "docker push projectfndev/fn-qa-docker-images:$newtag"
+#    - name: Push the image to Dockerhub. 
+#      command: "docker push projectfndev/fn-qa-docker-images:$newtag"
        
 - name: Deploy Docker Stack with 3 replicas
   hosts: docker-vm
