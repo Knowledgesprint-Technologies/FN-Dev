@@ -14,8 +14,8 @@ services:
               memory: "25M"
     ports:
       - "80:80"
-    volumes:
-      - htmldata: /var/www/localhost/htdocs
+        #volumes:
+      # - htmldata: /var/www/localhost/htdocs
     healthcheck:
        test: curl --fail http://localhost:80 || exit 1
        interval: 60s
