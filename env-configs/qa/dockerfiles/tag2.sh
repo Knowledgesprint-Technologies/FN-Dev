@@ -9,7 +9,6 @@ else
 	newtag=1.1
 	export newtag
 fi
-export newtag
 docker build -t $Repository/$Imagename:$newtag . 
 #docker push $Repository/$Imagename:$newtag
 docker images | awk '( $1 == "projectfndev/fn-qa-docker-images")' | awk '{print $2}'| sort -n > /tmp/tagging.txt
