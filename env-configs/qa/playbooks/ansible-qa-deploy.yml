@@ -58,7 +58,7 @@
        cmd: "source tag2.sh"
        
    - name: Fetch latest image tag
-     command: image_tag=`echo $newtag`
+     command: echo $newtag > sample.txt
      register: image_tag
      
    - name: Push the image to Dockerhub. 
