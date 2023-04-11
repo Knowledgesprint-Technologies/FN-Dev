@@ -55,7 +55,7 @@
      shell: 
        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
        executable: /bin/bash
-       cmd: "source tag2.sh && docker push projectfndev/fn-qa-docker-images:$newtag"
+       cmd: "source tag2.sh && docker push projectfndev/fn-qa-docker-images:$newtag && docker stack deploy -c docker-compose.yml fn-qa-apache"
        
 #    - name: Fetch latest image tag
 #      shell:
@@ -67,10 +67,10 @@
 #    - name: Push the image to Dockerhub. 
 #      command: "docker push projectfndev/fn-qa-docker-images:$newtag"
        
-- name: Deploy Docker Stack with 3 replicas
-  hosts: docker-vm
-  tasks:
-   - name: Deploy the docker stack.
-     shell:
-       chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
-       cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
+# - name: Deploy Docker Stack with 3 replicas
+#   hosts: docker-vm
+#   tasks:
+#    - name: Deploy the docker stack.
+#      shell:
+#        chdir: /home/dockeradm/FN-Dev/env-configs/qa/dockerfiles/
+#        cmd: docker stack deploy -c docker-compose.yml fn-qa-apache
