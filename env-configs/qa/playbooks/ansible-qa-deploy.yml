@@ -60,7 +60,7 @@
      shell:
        executable: /bin/bash
        cmd: image_tag=`echo $newtag`
-       register: image_tag
+       #register: image_tag
    - name: Push the image to Dockerhub. 
      shell:
        cmd: "docker push projectfndev/fn-qa-docker-images:{{image_tag}}"
