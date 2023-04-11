@@ -57,13 +57,14 @@
        executable: /bin/bash
        cmd: "source tag2.sh"
        
-   - name: Fetch latest image tag
-     command: echo $newtag > sample.txt
-     register: image_tag
+#    - name: Fetch latest image tag
+#      command: echo $newtag > sample.txt
+#      register: image_tag
      
    - name: Push the image to Dockerhub. 
      shell:
-       cmd: "docker push projectfndev/fn-qa-docker-images:{{image_tag}}"
+       executable: /bin/bash
+       cmd: "docker push projectfndev/fn-qa-docker-images:$newtag"
        
 - name: Deploy Docker Stack with 3 replicas
   hosts: docker-vm
