@@ -10,5 +10,5 @@ do
         # echo $files
         find $output_dir/ -type f -cmin +1 -delete
         filename=$(basename -s .docx $files | sed 's/\_/ /g')
-        pandoc "$files" -t html -o "$output_dir/$filename".html
+        pandoc --extract-media="$output_dir/$filename" "$files" -t html -o "$output_dir/$filename".html
 done
