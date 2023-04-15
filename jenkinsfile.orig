@@ -5,8 +5,8 @@ pipeline {
     stages {
         stage('Execution of Playbook') {
             steps {
-                dir('/home/ansibleadm/FN-Dev') {
-                    sh 'ansible-playbook test.yml'
+                dir('/home/ansibleadm/FN-Dev/env-configs/dev/playbooks/') {
+                    sh 'ansible-playbook ansible-dev-deploy.yml'
                 }
             }
         }
