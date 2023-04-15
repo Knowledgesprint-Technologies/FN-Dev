@@ -1,6 +1,6 @@
 #!/bin/bash
 
-input_dir="/home/ansibleadm/FN-Dev"
+input_dir="/home/ansibleadm/FN-Dev/documents"
 output_dir="/home/ansibleadm/FN-Dev/tmp"
 
 mkdir -p /home/ansibleadm/FN-Dev/tmp
