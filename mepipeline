@@ -16,7 +16,7 @@ pipeline {
 				branch "qa"
 			}
 			steps {
-				echo "changes in qa"
+				echo "changes in qa branch"
 			}
 		}
 	}
