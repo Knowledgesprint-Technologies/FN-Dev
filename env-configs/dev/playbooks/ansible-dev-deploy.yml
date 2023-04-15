@@ -16,4 +16,4 @@
 
       - name: deploy to tomcat using rsync (push)
         command:
-          rsync -avh --delete /home/ansibleadm/FN-Dev/html-gen-files/ tomcat@13.233.129.77:/opt/tomcat9/webapps/fn-dev/
+          rsync -avh --delete /home/ansibleadm/FN-Dev/html-gen-files/ tomcat@65.2.161.192:/opt/tomcat9/webapps/fn-dev/
