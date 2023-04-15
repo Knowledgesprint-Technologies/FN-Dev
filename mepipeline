@@ -1,33 +1,33 @@
 pipeline {
     agent any
-    parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
-    }
     stages {
-        stage('Deploy to Dev Env') {
+        stage('Dev') {
             when {
-                expression {
-                    params.BRANCH == 'dev'
-                    changeset "refs/remotes/origin/${params.BRANCH}"
-                    
-                }
+                changeset "dev"
             }
             steps {
-                dir('/home/ansibleadm/jenkins/workspace/FN-DEV-Ansible') {
-                    sh 'ansible-playbook env-configs/dev/playbooks/ansible-dev-deploy.yml'
-                }
+                echo "changes done in Dev"
             }
-        }    
-        stage('Deploy to QA Env') {
+        }
+        
+        stage('QA') {
             when {
-                expression {
-                    params.BRANCH == 'qa'
-                    changeset "refs/remotes/origin/${params.BRANCH}"
-                    
-                }
+                not { changeset "dev" }
+                changeset "qa"
             }
             steps {
-                sh "echo you r in qa"
+                echo "changes done in QA"
+            }
+        }
+
+        stage('master') {
+            when {
+                not { changeset "dev" }
+                not { changeset "qa" }
+                changeset "master"
+            }
+            steps {
+                echo "changes done in MASTER"
             }
         }
     }
