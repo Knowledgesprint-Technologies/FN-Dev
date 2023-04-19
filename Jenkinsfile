@@ -2,40 +2,34 @@ pipeline {
     agent {
         label 'Ansible-Master'
     }
-    parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'Test', type: 'PT_Branch'
-    }
     stages {
-        stage('SCM Checkout') {
+        stage('Checkout Dev branch') {
             steps {
-                dir('/home/ansibleadm/') {
-                    git 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git'
-                }
+                checkout([$class: 'GitSCM', branches: [[name: 'origin/dev']], userRemoteConfigs: [[url: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git']]])
             }
         }
-        stage('Deploy to Dev Env') {
+        stage('Execute Dev Playbook') {
             when {
-                changeset "refs/remote/origin/${params.BRANCH}"
+                changeset "documents/*.docx"
             }
             steps {
-                dir('/home/ansibleadm/FN-Dev') {
-                    sh 'ansible-playbook env-configs/dev/playbooks/ansible-dev-deploy.yml'
-                }
+                sh 'echo A new file has been added........Running Dev Playbook'
             }
-        }    
-        stage('Deploy to QA Env') {
+        }
+        stage('Checkout QA branch') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'origin/qa']], userRemoteConfigs: [[url: 'https://github.com/Knowledgesprint-Technologies/FN-Dev.git']]])
+            }
+        }
+        stage('Execute QA Playbook') {
             when {
-                anyOf {
-                    expression {
-                        params.BRANCH != 'master'
-                    }
-                    not {
-                        changeset "refs/remotes/origin/${params.BRANCH}"
-                    }
-                }
+                changeset "documents/*.docx"
             }
             steps {
-                sh "echo you r in qa"
+                sh 'echo A new file has been added........Running QA Playbook'
+                dir('/home/ansibleadm/FN-Dev/env-configs/qa/playbooks') {
+                    sh 'ansible-playbook ansible-qa-deploy.yml'
+                }
             }
         }
     }
